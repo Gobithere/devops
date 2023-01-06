@@ -1,0 +1,29 @@
+version: "2"
+
+volumes:
+  mysqlDataVolume:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "bind"
+      device: /home/dataVolumeTwo
+
+services:
+  mysqlContainer:
+    container_name: mysqlContainer
+    image: mysql:latest
+    restart: always
+    volumes:
+      - mysqlDataVolume:/var/lib/mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+
+    networks:
+      - kutay
+    ports:
+      - 3306:3306
+
+
+networks:
+  kutay:
+    external: true  

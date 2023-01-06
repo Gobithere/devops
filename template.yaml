@@ -1,0 +1,28 @@
+version: "3.1" # Compose version--if no version is specified then v1 is assumed. Recommend v2 minimum
+
+services: #containers. same as docker run command
+  servicename: # a name of container. this is also DNS name inside network
+    container_name : # custom name of container. overrides the generated servicename.
+    build: 
+      context: #path of directory 
+      dockerfile: # dockerfile name under regarding context/path of dir.
+    image: # if you use build before, it uses new generated build image. Else seeks within already possessed ones 
+    command: # Optional, replace default CMD specified by the image
+    volumes: # Optional, same as -v in docker run
+    restart: #always
+    ports:
+      - "host-port:container-port"
+    depends_on: # defines dependent containers. Dependencies composes before the current container   
+    networks: # defines the network that the container belongs
+      - network-name
+    environment:
+    healthcheck:
+    links:
+      - "hostname1" # allow to reach service to another hostname.
+  servicename2:
+
+volumes: # optional, same as docker volume create
+
+networks: # optional, same as docker network create
+  network-name: 
+    external : true # use existing network instead of create new one.

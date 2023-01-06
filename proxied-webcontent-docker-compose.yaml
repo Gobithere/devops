@@ -1,0 +1,23 @@
+---
+version: "2"
+services:
+  proxy:
+    container_name: nginxproxy
+    build:
+      context: /home/proxyNginx
+      dockerfile: nginx.Dockerfile
+    image: proxynginx
+    ports:
+      - 8080:80
+    networks:
+      - kutay
+  staticwebcontent:
+    container_name: staticwebcontent
+    image: httpd
+    volumes:
+      - /home/customWebContent:/usr/local/apache2/htdocs/
+    networks:
+      - kutay  
+networks:
+  kutay:
+    external: true
