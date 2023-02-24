@@ -1,0 +1,104 @@
+Shell Scripting Standards
+
+Scripts Naming Conventions
+-Script name should identify function
+-identify file extension functionName.bash or functionName.sh
+
+
+Script File Permissions
+-Script file should be executable
+chmod a+x script-name
+chmod 777 script-name executable by all users
+chmod 700 script-name executable by only root user.
+
+Script Format 
+
+- Start with line #!/bin/bash or #!/bin/sh
+- Type Purpose, Date or etc. as comment
+- 
+
+IF Conditions structure and operators
+
+if [arg1 operator arg2]; then code block
+or
+if [arg1 operator arg2]; then code block; else code block; fi
+
+Operators:
+https://opensource.com/article/19/10/programming-bash-logical-operators-shell-expansions
+
+WildCards:
+https://linuxhint.com/bash_wildcard_tutorial/
+
+
+ARRAYS
+https://www.geeksforgeeks.org/bash-scripting-array/
+
+
+CASE Read multiple choice from CLI 
+
+echo ' a= string'
+echo ' b= string'
+echo ' c= string'
+echo ' d= string'
+
+    read selection
+
+    case $selection in 
+
+    a) 
+    command1
+    ;;
+    b) 
+    command2
+    ;;
+    c) 
+    command3
+    ;;
+    d) command4
+    ;;
+    *)
+    command5
+
+  while (condition expression)
+  do
+        code block
+  done 
+
+ EXIT STATUS (CODE)
+0 = OK or Successfull
+1 = Minor Problem
+2 = Serious Trouble 
+3-255 = Everything Else
+
+$#: How many command line parameters were passed to the script.
+$@: All the command line parameters passed to the script.
+$?: The exit status of the last process to run.
+$$: The Process ID (PID) of the current script.
+$USER: The username of the user executing the script.
+$HOSTNAME: The hostname of the computer running the script.
+$SECONDS: The number of seconds the script has been running for.
+$RANDOM: Returns a random number.
+$LINENO: Returns the current line number of the script.
+
+
+ERROR HANDLING
+
+Add set -eu or set -o pipefail -e 
+
+https://www.xmodulo.com/catch-handle-errors-bash.html
+
+
+REDIRECT OPERATIONS
+
+'>'   --> redirects stnout to file (Overwrites the File)
+'>>'  --> redirects stnout to file (Append to the File)
+'&>'  --> redirects both stnout and stnerror to file(Overwrites the File)
+'&>>' --> redirects both stnout and stnerror to file(Append to the File)
+
+/dev/null USAGE
+
+https://linuxhint.com/what_is_dev_null/
+
+***
+nohup .bashscriptname --> script dosyası nohup command ile çalıştırılırsa terminal hangup sinyalini ignore eder ve 
+script arka planda çalışmaya devam eder.*** Örneğin tail ile dosya açınca terminal hangup olarak çalışır.
